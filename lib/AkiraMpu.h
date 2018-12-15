@@ -146,7 +146,6 @@ int16_t mz=0;//Z axis
 
 int initMpu()
 {
-    class TwoWire Wire;
     Wire.begin();//enable I2C interface
     Hreset();//reset the chip
 }
