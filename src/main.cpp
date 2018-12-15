@@ -1,10 +1,22 @@
 #include <Arduino.h>
-#include "C:\Users\chmae\OneDrive\Projetos esp32\Mpu9255\lib/MPU9255.h"
+#include <Wire.h>
+#include <iostream> 
+#include <stdint.h>
+
+using namespace std;
+
+#include <C:\Users\chmae\OneDrive\Projetos esp32\Mpu9255\lib\AkiraMpu.h>
 
 void setup() {
-  // put your setup code here, to run once:
+  
+
+  Serial.begin(115200);//initialize Serial port
+  
+
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  //print all data in serial monitor
+  
+  delay(100);
 }
