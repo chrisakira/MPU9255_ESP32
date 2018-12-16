@@ -1,24 +1,52 @@
-#include <Arduino.h>
-#include <Wire.h>
-#include <iostream> 
-#include <stdint.h>
-
-using namespace std;
-uint8_t state ;
-#include <C:\Users\chmae\OneDrive\Projetos esp32\Mpu9255\lib\AkiraMpu.h>
-
+#include <MPU9250_asukiaaa.h>
+ 
+#ifdef _ESP32_HAL_I2C_H_
+#define SDA_PIN 21
+#define SCL_PIN 22
+#endif
+ 
+MPU9250 mySensor;
+ 
 void setup() {
-  
-  Serial.begin(9600);
-  Wire.begin(22,21);
-  Serial.println();
-  delay(1000);
-  initMpu();
+while(!Serial);
+ 
+Serial.begin(9600);
+Serial.println("started");
+ 
+#ifdef _ESP32_HAL_I2C_H_
+// for esp32
+Wire.begin(SDA_PIN, SCL_PIN); //sda, scl
+#else
+Wire.begin();
+#endif
+ 
+mySensor.setWire(&Wire);
+ 
+mySensor.beginAccel();
+mySensor.beginMag();
+ 
+// you can set your own offset for mag values
+// mySensor.magXOffset = -50;
+// mySensor.magYOffset = -55;
+// mySensor.magZOffset = -10;
 }
-
+ 
 void loop() {
-  Serial.println();
   
-  delay(100 );
-
+mySensor.accelUpdate();
+Serial.println("print accel values");
+Serial.println("accelX: " + String(mySensor.accelX()));
+Serial.println("accelY: " + String(mySensor.accelY()));
+Serial.println("accelZ: " + String(mySensor.accelZ()));
+Serial.println("accelSqrt: " + String(mySensor.accelSqrt()));
+ 
+mySensor.magUpdate();
+Serial.println("print mag values");
+Serial.println("magX: " + String(mySensor.magX()));
+Serial.println("maxY: " + String(mySensor.magY()));
+Serial.println("magZ: " + String(mySensor.magZ()));
+Serial.println("horizontal direction: " + String(mySensor.magHorizDirection()));
+ 
+Serial.println("at " + String(millis()) + "ms");
+delay(100);
 }
