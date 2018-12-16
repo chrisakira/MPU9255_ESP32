@@ -14,13 +14,9 @@ void setup() {
   Serial.println();
   delay(1000);
   initMpu();
-  read_acc();
 }
 
 void loop() {
-  Serial.print(ax);
-  Serial.print(ay);
-  Serial.print(az);
   Serial.println();
   
   delay(100 );
