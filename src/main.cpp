@@ -12,7 +12,6 @@ while(!Serial);
  
 Serial.begin(9600);
 Serial.println("started");
- 
 #ifdef _ESP32_HAL_I2C_H_
 // for esp32
 Wire.begin(SDA_PIN, SCL_PIN); //sda, scl
@@ -26,27 +25,28 @@ mySensor.beginAccel();
 mySensor.beginMag();
  
 // you can set your own offset for mag values
-// mySensor.magXOffset = -50;
-// mySensor.magYOffset = -55;
-// mySensor.magZOffset = -10;
+ mySensor.magXOffset = 0;
+ mySensor.magYOffset = 0;
+ mySensor.magZOffset = 0;
 }
  
 void loop() {
-  
 mySensor.accelUpdate();
 Serial.println("print accel values");
-Serial.println("accelX: " + String(mySensor.accelX()));
-Serial.println("accelY: " + String(mySensor.accelY()));
-Serial.println("accelZ: " + String(mySensor.accelZ()));
-Serial.println("accelSqrt: " + String(mySensor.accelSqrt()));
+Serial.println("aX: " + String(mySensor.accelX()));
+Serial.println("aY: " + String(mySensor.accelY()));
+Serial.println("aZ: " + String(mySensor.accelZ()));
+Serial.println("aM: " + String(mySensor.accelSqrt()));
  
 mySensor.magUpdate();
 Serial.println("print mag values");
-Serial.println("magX: " + String(mySensor.magX()));
-Serial.println("maxY: " + String(mySensor.magY()));
-Serial.println("magZ: " + String(mySensor.magZ()));
-Serial.println("horizontal direction: " + String(mySensor.magHorizDirection()));
+Serial.println("mX: " + String(mySensor.magX()));
+Serial.println("mY: " + String(mySensor.magY()));
+Serial.println("mZ: " + String(mySensor.magZ()));
+Serial.println("hd: " + String(mySensor.magHorizDirection()));
  
 Serial.println("at " + String(millis()) + "ms");
-delay(100);
+delay(500);
+
+
 }
