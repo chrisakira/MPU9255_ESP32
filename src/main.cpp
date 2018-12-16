@@ -8,11 +8,7 @@ using namespace std;
 #include <C:\Users\chmae\OneDrive\Projetos esp32\Mpu9255\lib\AkiraMpu.h>
 
 void setup() {
-  
-
   Serial.begin(115200);//initialize Serial port
-  
-
 }
 
 void loop() {
