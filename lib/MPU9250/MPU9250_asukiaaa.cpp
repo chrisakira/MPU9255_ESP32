@@ -8,6 +8,8 @@
 
 #define MPU9250_RA_WHOAMI 0x75
 
+const float Pi = 3.14159;
+
 void MPU9250::i2cRead(uint8_t Address, uint8_t Register, uint8_t Nbytes, uint8_t* Data) {
   myWire->beginTransmission(Address);
   myWire->write(Register);
@@ -83,7 +85,6 @@ void MPU9250::magSetMode(uint8_t mode) {
   delay(10);
 }
 
-const float Pi = 3.14159;
 
 float MPU9250::magHorizDirection() {
   return atan2(magX(), magY()) * 180 / Pi;

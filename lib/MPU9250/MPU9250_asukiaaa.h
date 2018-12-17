@@ -1,7 +1,7 @@
 #ifndef MPU9250_ASUKIAAA_H
 #define MPU9250_ASUKIAAA_H
 #include <Arduino.h>
-#include <Wire.h>
+#include "Wire.h"
 
 
 #define MPU9250_ADDRESS_AD0_LOW  0x68
@@ -24,6 +24,7 @@
 #define MAG_MODE_CONTINUOUS_100HZ 0x6
 #define MAG_MODE_SELFTEST         0x8
 #define MAG_MODE_FUSEROM          0xF
+
 
 class MPU9250 {
   public:
