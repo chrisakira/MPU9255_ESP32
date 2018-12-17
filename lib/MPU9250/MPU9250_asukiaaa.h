@@ -27,9 +27,16 @@
 
 
 class MPU9250 {
+  TwoWire* myWire;
+  uint8_t address;
+  uint8_t accelBuf[6];
+  float accelRange;
+  uint8_t gyroBuf[6];
+  float gyroRange;
+  uint8_t magBuf[7];
+  uint8_t magXAdjust, magYAdjust, magZAdjust;
+  
   public:
-  int16_t magXOffset, magYOffset, magZOffset;
-
   MPU9250(uint8_t address = MPU9250_ADDRESS_AD0_LOW):
     address(address),
     accelRange(0),
@@ -37,6 +44,8 @@ class MPU9250 {
     magXOffset(0),
     magYOffset(0),
     magZOffset(0) {};
+    
+  int16_t magXOffset, magYOffset, magZOffset;
   void setWire(TwoWire *wire);
   uint8_t readId();
 
@@ -62,14 +71,6 @@ class MPU9250 {
   float magHorizDirection();
 
   private:
-  TwoWire* myWire;
-  uint8_t address;
-  uint8_t accelBuf[6];
-  float accelRange;
-  uint8_t gyroBuf[6];
-  float gyroRange;
-  uint8_t magBuf[7];
-  uint8_t magXAdjust, magYAdjust, magZAdjust;
   float accelGet(uint8_t highIndex, uint8_t lowIndex);
   float gyroGet(uint8_t highIndex, uint8_t lowIndex);
   int16_t magGet(uint8_t highIndex, uint8_t lowIndex);
